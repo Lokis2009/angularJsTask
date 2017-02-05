@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/main.css">
@@ -7,15 +8,48 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<title>AngularJs Task</title>
 </head>
-<body ng-app="myApp">
-<div><h1>Hello AngularJs!</h1></div>
 
-<table ng-controller="tableCtr"> 
-	
-</table>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<body ng-app="myApp">
+
+	<div ng-controller="tableCtr">
+
+		<table class="table table-bordered">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Gender</th>
+				<th>Eye Color</th>
+				<th>Picture</th>
+				<th>About</th>
+				<th>Company</th>
+				<th>Address</th>
+				<th>E-mail</th>
+				<th>isActive</th>
+				<th>registered</th>
+
+			</tr>
+			<tr ng-repeat="user in userData">
+				<td>{{user.id}}</td>
+				<td>{{user.name}}</td>
+				<td>{{user.age}}</td>
+				<td>{{user.gender}}</td>
+				<td>{{user.eyeColor}}</td>
+				<td><img src="{{user.picture}}" alt=""></td>
+				<td>{{user.about}}</td>
+				<td>{{user.company}}</td>
+				<td>{{user.address}}</td>
+				<td>{{user.email}}</td>
+				<td>{{user.isActive| yesFilter}}</td>
+				<td>{{user.registered}}</td>
+
+			</tr>
+		</table>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
 	<script src="libs/angular-resource.min.js"></script>
-	<script src="libs/angular-route.min.js"></script>
+	<script src="libs/angular-route.js"></script>
 	<script src="js/app.js"></script>
 </body>
+
 </html>

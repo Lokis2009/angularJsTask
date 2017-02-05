@@ -3,3 +3,6 @@ body {
   body h1 {
     font-size: 22px;
     color: blue; }
+
+table img {
+  max-width: 85px; }
