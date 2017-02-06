@@ -27,20 +27,20 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvide, $loc
 app.controller('tableCtr', function ($scope, UserData, UsersData, $location) {
 
 	$scope.usersData = UsersData.query();
-
+		// go to edit User page
 	$scope.editUser = function (userId) {
 		$location.path('/edituser/' + userId);
 	};
-
+		// go to edit New user create page
 	$scope.createNewUser = function () {
 		$location.path('/newuser/');
 	};
-
+		//delete User
 	$scope.deleteUser = function (userId) {
 		UserData.delete({
 			id: userId
 		})
-		$scope.usersData = UsersData.query()
+		$scope.usersData = UsersData.query()  //update data after delete
 
 	}
 
@@ -72,7 +72,7 @@ app.factory('UserData', function ($resource) {
 	})
 });
 
-app.factory('UsersData', function($resource){
+app.factory('UsersData', function ($resource) {
 	return $resource(URL, {}, {
 		query: {
 			method: "GET",
@@ -85,29 +85,32 @@ app.factory('UsersData', function($resource){
 	})
 })
 
-app.controller('editUserCtrl', function($scope, $location, $resource, $routeParams ,UserData, UsersData){
-	$scope.updateUser = function(){
-			UserData.update($scope.user);
-			$location.path('/')
+app.controller('editUserCtrl', function ($scope, $location, $resource, $routeParams, UserData, UsersData) {
+	// update User Data
+	$scope.updateUser = function () {
+		UserData.update($scope.user);
+		$location.path('/')
 	};
 
-	$scope.cancel = function(){
+	$scope.cancel = function () {
 		$location.path('/')
 	}
-
-	$scope.user = UserData.get({id: $routeParams.userId});
-	console.log($routeParams)
+		// get this.user Data
+	$scope.user = UserData.get({
+		id: $routeParams.userId
+	});
 });
 
-app.controller('newUserCtrl', function($scope, $location, $resource, UserData, UsersData){
-
-	$scope.createNewUser = function(){
+app.controller('newUserCtrl', function ($scope, $location, $resource, UserData, UsersData) {
+		// create new User
+	$scope.createNewUser = function () {
 		UsersData.create($scope.user);
 		$location.path('/');
 	}
-		$scope.cancel = function(){
-		$location.path('/')
-		}
 	
+	$scope.cancel = function () {
+		$location.path('/')
+	}
+
 
 });
