@@ -1,26 +1,22 @@
 var app = angular.module('myApp', ['ngResource', 'ngRoute'])
 
-var URL = 'http://smartass.su:5000/api/users'// 'https://api.myjson.com/bins/lqh89'
+var URL = 'http://smartass.su:5000/api/users'  // 'https://api.myjson.com/bins/lqh89'
 
-app.controller('tableCtr', function ($http, $scope) {
+app.controller('tableCtr', function ( $scope, UserData) {
 
+	/*
 	$http.get(URL).success(function (data) {
 		$scope.userData = data
-	})
-
+	})*/
+	
+	$scope.userData = UserData.query();
+	
 	$scope.sortType = 'name';
 	$scope.sortReverse = false;
 	$scope.searchFilter = '';
-});
-
-/*
-app.factory('UserData', function($resource) {
-
-	return $resource(URL);
+	
 
 });
-
-*/
 
 app.filter("yesFilter", function () {
 	return function (input) {
@@ -29,3 +25,8 @@ app.filter("yesFilter", function () {
 		else return '\u2718';
 	}
 });
+
+app.factory('UserData', function($resource) {
+  return $resource(URL+'/:id'); // Note the full endpoint address
+});
+
