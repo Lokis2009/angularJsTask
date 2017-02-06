@@ -7,6 +7,10 @@ app.controller('tableCtr', function($http, $scope){
 	 $http.get(URL).success(function(data){
 		 $scope.userData = data
 	 })
+	 
+	 $scope.sortType = 'name';
+	$scope.sortReverse = false;
+	 $scope.searchFilter   = '';
 });
 
 /*
