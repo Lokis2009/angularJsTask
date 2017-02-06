@@ -1,16 +1,16 @@
 var app = angular.module('myApp', ['ngResource', 'ngRoute'])
 
-var URL='https://api.myjson.com/bins/lqh89'
+var URL = 'http://smartass.su:5000/api/users'// 'https://api.myjson.com/bins/lqh89'
 
-app.controller('tableCtr', function($http, $scope){
- 
-	 $http.get(URL).success(function(data){
-		 $scope.userData = data
-	 })
-	 
-	 $scope.sortType = 'name';
+app.controller('tableCtr', function ($http, $scope) {
+
+	$http.get(URL).success(function (data) {
+		$scope.userData = data
+	})
+
+	$scope.sortType = 'name';
 	$scope.sortReverse = false;
-	 $scope.searchFilter   = '';
+	$scope.searchFilter = '';
 });
 
 /*

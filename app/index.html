@@ -16,8 +16,16 @@
 </head>
 
 <body ng-app="myApp">
-
+	<!--<div class="container">-->
 	<div ng-controller="tableCtr">
+		<form>
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-addon"><i class="fa fa-search"></i></div>
+					<input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchFilter">
+				</div>
+			</div>
+		</form>
 
 		<table class="table table-bordered table-stripped">
 			<tr>
@@ -89,7 +97,9 @@
 
 			</tr>
 		</table>
-	</div>
+	</div> <!--tableCtr-->
+	
+	<!--</div> --><!--comntainer-->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
 	<script src="libs/angular-resource.min.js"></script>
 	<script src="libs/angular-route.js"></script>
