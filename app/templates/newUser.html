@@ -1,0 +1,76 @@
+<div class="container">
+    <h1>New User</h1>
+
+   <form class="form-horizontal" novalidate="novalidate">
+    
+        <div class="form-group">
+             <label for="inputFirstName" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" id="inputFirstName" class="form-control" ng-model="user.name"/>
+            </div>
+        </div>
+       <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputgender">Gender</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" id="inputgender" ng-model="user.gender" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputeyeColor">Eye Color</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" id="inputeyeColor" ng-model="user.eyeColor" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputPicture">Link to picture:</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="url" id="inputPicture" ng-model="user.picture" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputAbout" class="col-sm-2 control-label">About:</label>
+            <div class="col-sm-10 col-md-6">
+				<textarea class="form-control" rows="6" id="inputAbout" ng-model="user.about"></textarea>
+            </div>
+        </div>
+       <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputCompany">Company</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" id="inputCompany" ng-model="user.company" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputAddress">Address</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" id="inputAddress" ng-model="user.address" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputEmail">E-mail</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="email" id="inputEmail" ng-model="user.email" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputIsActive">isActive</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" id="inputIsActive" ng-model="user.isActive" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputRegistered">Registered</label>
+            <div class="col-sm-10 col-md-6">
+                <input type="text" id="inputRegistered" ng-model="user.registered" class="form-control"/>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <div class="controls col-sm-offset-3">
+              <!-- user-detail.html: -->
+                <a ng-click="cancel()" class="btn btn-default">cancel</a>
+                             <!-- user-creation.html: -->
+                <a ng-click="createNewUser()" class="btn btn-small btn-primary">create new user</a>
+            </div>
+        </div>
+    </form>
+</div>
