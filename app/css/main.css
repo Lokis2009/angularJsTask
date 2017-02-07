@@ -3,7 +3,18 @@ body {
   body h1 {
     font-size: 22px;
     color: blue;
-    text-align: center; }
+    display: block; }
 
-table img {
+.mainTable img {
   max-width: 85px; }
+
+.mainTable tbody {
+  text-align: center; }
+  .mainTable tbody tr td {
+    font-size: 10px; }
+  .mainTable tbody tr th {
+    font-size: 14px; }
+  .mainTable tbody tr .email {
+    padding: 1px;
+    text-align: center;
+    padding-top: 8px; }
