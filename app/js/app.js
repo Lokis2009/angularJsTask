@@ -39,8 +39,15 @@ app.controller('tableCtr', function ($scope, UserData, UsersData, $location) {
 	$scope.deleteUser = function (userId) {
 		UserData.delete({
 			id: userId
-		})
-		$scope.usersData = UsersData.query()  //update data after delete
+		}).$promise.then(function(responce){
+			console.log(responce);
+			
+			$scope.usersData = UsersData.query()  //update data after delete
+			
+		}).catch(function(error){
+			console.log(error)
+		});
+		
 
 	}
 
@@ -120,8 +127,14 @@ app.controller('editUserCtrl', function ($scope, $http, $location, $resource, $r
 app.controller('newUserCtrl', function ($scope, $location, $resource, UserData, UsersData) {
 		// create new User
 	$scope.createNewUser = function () {
-		UsersData.create($scope.user);
-		$location.path('/');
+		UsersData.create($scope.user).$promise
+			.then(function(){
+				$location.path('/')	
+		})
+			.catch(function(error){
+			console.log(error)
+		});
+		
 	}
 	
 	$scope.cancel = function () {
