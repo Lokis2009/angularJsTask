@@ -85,19 +85,35 @@ app.factory('UsersData', function ($resource) {
 	})
 })
 
-app.controller('editUserCtrl', function ($scope, $location, $resource, $routeParams, UserData, UsersData) {
+app.controller('editUserCtrl', function ($scope, $http, $location, $resource, $routeParams, UserData, UsersData, $q) {
 	// update User Data
 	$scope.updateUser = function () {
-		UserData.update($scope.user);
-		$location.path('/')
+		
+		UserData.update($scope.user)
+			.$promise
+			.then(function(){
+			$location.path('/')	
+		})
+		.catch(function(error){
+			console.log(error);
+			alert('что-то пошло не так!')
+		})
+		
+		
+		
 	};
 
 	$scope.cancel = function () {
 		$location.path('/')
 	}
 		// get this.user Data
-	$scope.user = UserData.get({
+	UserData.get({
 		id: $routeParams.userId
+	}).$promise.then(function(responce){
+				$scope.user = responce
+
+	}).catch(function(error){
+		console.log(error);
 	});
 });
 
