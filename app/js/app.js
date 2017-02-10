@@ -1,10 +1,45 @@
-var app = angular.module('myApp', ['ngResource', 'ngRoute'])
+var app = angular.module('myApp', ['ngResource', 'ui.router'])
 
 var URL = 'http://smartass.su:5000/api/users' // 'https://api.myjson.com/bins/lqh89'
 
-app.config(['$routeProvider', '$locationProvider', function ($routeProvide, $locationProvider) {
+app.config(function($stateProvider) {
+  var helloState = {
+    name: 'hello',
+    url: '/hello',
+    template: '<h3>hello world!</h3>'
+  }
 
-	$routeProvide
+  var edituserState = {
+	name: 'editUser',
+	url: '/edituser/:userId',
+	templateUrl: 'templates/editUser.html'
+} 
+
+var newuserState = {
+	name: 'newuser',
+	url: '/newuser/',
+	templateUrl: 'templates/newUser.html'
+}
+var homeState = {
+	name: 'home',
+	url: '/',
+	templateUrl: 'templates/home.html'
+}
+  $stateProvider.state(helloState);
+  $stateProvider.state(newuserState);
+ $stateProvider.state(homeState);
+  $stateProvider.state(edituserState);
+});
+
+/*app.config( function ($stateProvider) {
+
+var edituser= {
+	name: 'editUser',
+	url: 'edituser/:userId',
+	templateUrl: 'templates/editUser.html'
+} 
+	
+	/*$routeProvide
 		.when('/', {
 			templateUrl: 'templates/home.html',
 			controller: 'tableCtr'
@@ -21,7 +56,8 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvide, $loc
 		.otherwise({
 			redirectTo: '/'
 		});
-}]);
+		$stateProvider.state(edituser);
+}); */
 
 
 app.controller('tableCtr', function ($scope, UserData, UsersData, $location) {
