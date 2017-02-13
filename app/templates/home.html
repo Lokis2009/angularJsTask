@@ -1,6 +1,6 @@
 <div ng-controller="tableCtr">
 		<!--<input type="text" ng-model="id">{{id}}-->
-		 <a ng-click="createNewUser()" class="btn btn-default">create new user</a>
+		 <a ui-sref="newuser" class="btn btn-default">create new user</a>
 		
 		<form>
 			<div class="form-group">
@@ -10,7 +10,7 @@
 				</div>
 			</div>
 		</form>
-
+				<h2>homectrl</h2>
 		<table class="table table-bordered table-stripped mainTable">
 			<tr>
 				<th><a href="" ng-click="sortType = 'id'; sortReverse = !sortReverse">Id  </a>
@@ -67,7 +67,6 @@
 				<th>Edit</th>
 				<th>Del</th>
 			</tr>
-			
 			<tr ng-repeat="user in usersData | orderBy: sortType : sortReverse |filter: searchFilter">
 				<td>{{user.id}}</td>
 				<td>{{user.name}}</td>
@@ -81,7 +80,7 @@
 				<td class="email">{{user.email}}</td>
 				<td>{{user.isActive| yesFilter}}</td>
 				<td>{{user.registered}}</td>
-				 <td><a ng-click="editUser(user.id)" class="btn btn-xs btn-primary">edit</a></td>
+				 <td><a ui-sref="editUser({userId: user.id})" class="btn btn-xs btn-primary">edit</a></td>
             <td><a ng-click="deleteUser(user.id)" class="btn btn-xs btn-danger">delete</a></td>
 
 			</tr>
