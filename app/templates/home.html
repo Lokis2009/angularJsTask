@@ -1,6 +1,6 @@
-<div ng-controller="tableCtr">
+<div>
 		<!--<input type="text" ng-model="id">{{id}}-->
-		 <a ui-sref="newuser" class="btn btn-default">create new user</a>
+		 <a ui-sref="newUser" class="btn btn-default">create new user</a>
 		
 		<form>
 			<div class="form-group">
@@ -80,8 +80,8 @@
 				<td class="email">{{user.email}}</td>
 				<td>{{user.isActive| yesFilter}}</td>
 				<td>{{user.registered}}</td>
-				 <td><a ui-sref="editUser({userId: user.id})" class="btn btn-xs btn-primary">edit</a></td>
-            <td><a ng-click="deleteUser(user.id)" class="btn btn-xs btn-danger">delete</a></td>
+				 <td><a ui-sref="editUser({ediIid: user.id})" class="btn btn-xs btn-primary">edit</a></td>
+            <td><a ng-click="deleteUser({id: user.id})" class="btn btn-xs btn-danger">delete</a></td>
 
 			</tr>
 		</table>
