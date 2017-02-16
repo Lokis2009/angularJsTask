@@ -25,12 +25,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	})
 
 	$stateProvider.state('editUser', {
-		url: '/edituser/:ediIid',
+		url: '/edituser/:id',
 		templateUrl: 'templates/editUser.html',
 		resolve: {
-			user: function (Users) {
-				return Users.query({
-					id: ediIid
+			user: function (Users, $stateParams) {
+				console.log($stateParams);
+
+				return Users.get({
+					id: $stateParams.id
 				})
 			}
 		},
@@ -41,21 +43,40 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 app.factory('Users', function ($resource) {
 	return $resource(URL, {
-		id: '@id'
+		id: "@id"
 	}, {
+		get: {
+			method: 'GET'
+		},
+		create: {
+			method: "PUT"
+		},
+
 		query: {
 			method: 'GET',
 			isArray: true
 		},
-		create: {
-			method: "PUT"
+
+
+		delete: {
+			method: 'DELETE'
 		}
 	})
 });
 
-app.controller('HomeCtr', function ($scope, users) {
+app.controller('HomeCtr', function ($scope, users, Users) {
+
 	$scope.usersData = users;
-	console.log("===>", users)
+
+	$scope.deleteUser = function (id) {
+		Users.delete(id).$promise.then(function () {
+			alert("Deleted!");
+				$location.path('/')
+			})
+			.catch(function (error) {
+				console.log(error)
+			});
+	}
 });
 
 app.controller('NewUserCtr', function ($scope, Users, $location) {
