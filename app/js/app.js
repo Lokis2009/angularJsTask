@@ -29,8 +29,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: 'templates/editUser.html',
 		resolve: {
 			user: function (Users, $stateParams) {
-				console.log($stateParams);
-
 				return Users.get({
 					id: $stateParams.id
 				})
@@ -57,21 +55,24 @@ app.factory('Users', function ($resource) {
 			isArray: true
 		},
 
-
 		delete: {
 			method: 'DELETE'
+		},
+
+		save: {
+			method: 'POST'
 		}
 	})
 });
 
-app.controller('HomeCtr', function ($scope, users, Users) {
+app.controller('HomeCtr', function ($scope, $location, users, Users) {
 
 	$scope.usersData = users;
 
 	$scope.deleteUser = function (id) {
 		Users.delete(id).$promise.then(function () {
-			alert("Deleted!");
-				$location.path('/')
+				alert("Deleted!");
+
 			})
 			.catch(function (error) {
 				console.log(error)
@@ -82,6 +83,7 @@ app.controller('HomeCtr', function ($scope, users, Users) {
 app.controller('NewUserCtr', function ($scope, Users, $location) {
 	// create new User
 	$scope.createNewUser = function () {
+
 		Users.create($scope.user).$promise
 			.then(function () {
 				$location.path('/')
@@ -92,11 +94,18 @@ app.controller('NewUserCtr', function ($scope, Users, $location) {
 	}
 });
 
-app.controller('EditUserCtr', function ($scope, $location, user) {
-
-	console.log('editUser: ' + user);
+app.controller('EditUserCtr', function ($scope, $location, user, Users) {
 
 	$scope.user = user;
+
+	$scope.updateUser = function () {
+		Users.save($scope.user).$promise.then(function () {
+				$location.path('/')
+			})
+			.catch(function (error) {
+				console.log(error)
+			});
+	}
 
 })
 
